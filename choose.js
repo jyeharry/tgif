@@ -23,11 +23,12 @@ const choose = () => {
 
   const randomIndex = Math.floor(Math.random() * options.length)
   const choice = options.splice(randomIndex, 1)[0]
+  const filteredOptions = options.filter(option => option !== choice)
 
   console.log(choice)
 
   if (!dryRun) {
-    fs.writeFileSync(optionsPath, JSON.stringify(options, null, 2))
+    fs.writeFileSync(optionsPath, JSON.stringify(filteredOptions, null, 2))
   }
 
   return choice
